@@ -16,6 +16,27 @@ start-area fixture. Other game versions and physical PSP hardware are untested.
 2. Enable cheats in PPSSPP and enable **Adjustable chase camera**.
 3. Fully restart the game and select either the normal or far chase view.
 
+### Android import
+
+Use **Cheats > Browse** to select the downloaded file. If Android's picker only
+shows `.db` files, rename a copy to `camera.db` first; its contents stay the same.
+Alternatively, copy the INI directly into the memory stick's `PSP/Cheats` folder.
+
+Save edited files as **UTF-8 without a BOM, with LF (Unix) line endings**.
+PPSSPP's Android importer compares the `_S` game-ID line exactly; Windows CRLF
+line endings leave an extra carriage return and can cause **No new cheats found
+for this game**. The repository enforces LF line endings for the INI.
+
+The running game must be **ULES00111**. Import also skips a cheat whose name is
+already present, so that message can mean it was imported previously. Re-import
+does not replace an existing camera cheat; edit its installed INI to change it.
+
+Import formatting was checked with PPSSPP's unchanged C++ import functions,
+compiled natively on Windows with Android-style newline handling. The original
+CRLF file imported no camera codes; the LF file imported all 20 active codes,
+preserved an unrelated cheat and skipped a duplicate import. This checks the
+importer, not gameplay on an Android device.
+
 ## Choose settings with `//`
 
 Keep one height line and one distance line active. For pitch and follow speed,
